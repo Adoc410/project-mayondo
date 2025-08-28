@@ -1,174 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MWF Cart</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('pic/lamp.gif');
-      background-size: cover;
-      background-position: center;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>MWF Cart</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("pic/lamp.gif");
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+      }
 
-    .cart-container {
-      width: 100%;
-      max-width: 900px;
-      background: rgba(24, 243, 68, 0.95);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      animation: fadeIn 1.5s ease;
-    }
+      .cart-container {
+        width: 100%;
+        max-width: 900px;
+        background: rgba(24, 243, 68, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1.5s ease;
+      }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #9c27b0;
-      font-size: 2rem;
-    }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #9c27b0;
+        font-size: 2rem;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
 
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #12e844;
-    }
+      th,
+      td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #12e844;
+      }
 
-    th {
-      background: #f3e5f5;
-      color: #6a1b9a;
-    }
+      th {
+        background: #f3e5f5;
+        color: #6a1b9a;
+      }
 
-    td {
-      font-size: 1rem;
-    }
+      td {
+        font-size: 1rem;
+      }
 
-    .total {
-      text-align: right;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-top: 15px;
-      color: darkmagenta;
-    }
+      .total {
+        text-align: right;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 15px;
+        color: darkmagenta;
+      }
 
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background: purple;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      margin: 5px;
-    }
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        background: purple;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 5px;
+      }
 
-    button:hover {
-      background: darkmagenta;
-    }
+      button:hover {
+        background: darkmagenta;
+      }
 
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 8px 14px;
-      background: rgb(128, 128, 128);
-      color: white;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+      .back-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 14px;
+        background: rgb(128, 128, 128);
+        color: white;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: 0.3s;
+      }
 
-    .back-btn:hover {
-      background: #555;
-    }
+      .back-btn:hover {
+        background: #555;
+      }
 
-    /* Toast notification styles */
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: -350px;
-      background: #9c27b0;
-      color: rgb(219, 15, 238);
-      padding: 15px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: right 0.5s ease, opacity 0.5s ease;
-      opacity: 0.95;
-      z-index: 2000;
-    }
+      /* Toast notification styles */
+      .toast {
+        position: fixed;
+        top: 20px;
+        right: -350px;
+        background: #9c27b0;
+        color: rgb(219, 15, 238);
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: right 0.5s ease, opacity 0.5s ease;
+        opacity: 0.95;
+        z-index: 2000;
+      }
 
-    .toast.show {
-      right: 20px;
-    }
+      .toast.show {
+        right: 20px;
+      }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-  </style>
-</head>
-<body>
-    <nav style="background:#10de1e; padding:10px;">
-  <a href="home.html" style="color:white; margin-right:15px;">Home</a>
-  <a href="index.html" style="color:white; margin-right:15px;">Login</a>
-  <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
-  <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
-  <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
-  <a href="user.html" style="color:white; margin-right:15px;">Users</a>
-  <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
-  <a href="product.html" style="color:white; margin-right:15px;">Products</a>
-  <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
-  <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
-  <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
-  <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
-  <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
-</nav>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="background: #10de1e; padding: 10px">
+      <a href="home.html" style="color: white; margin-right: 15px">Home</a>
+      <a href="index.html" style="color: white; margin-right: 15px">Login</a>
+      <a href="dash.html" style="color: white; margin-right: 15px">Dashboard</a>
+      <a href="admin.html" style="color: white; margin-right: 15px">Admin</a>
+      <a href="wk.html" style="color: white; margin-right: 15px">Workers</a>
+      <a href="user.html" style="color: white; margin-right: 15px">Users</a>
+      <a href="sales.html" style="color: white; margin-right: 15px">Sales</a>
+      <a href="product.html" style="color: white; margin-right: 15px"
+        >Products</a
+      >
+      <a href="invent.html" style="color: white; margin-right: 15px"
+        >Inventory</a
+      >
+      <a href="todo.html" style="color: white; margin-right: 15px">To-Do</a>
+      <a href="cart.html" style="color: white; margin-right: 15px">Cart</a>
+      <a href="attend.html" style="color: white; margin-right: 15px"
+        >Attendance</a
+      >
+      <a href="surv.html" style="color: white; margin-right: 15px">Survey</a>
+    </nav>
 
-  <div class="cart-container">
-    <a href="products.html" class="back-btn">← Back to Products</a>
-    <h1>Your Cart</h1>
+    <div class="cart-container">
+      <a href="products.html" class="back-btn">← Back to Products</a>
+      <h1>Your Cart</h1>
 
-    <table id="cartTable">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Items will load here -->
-      </tbody>
-    </table>
+      <table id="cartTable">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Items will load here -->
+        </tbody>
+      </table>
 
-    <p class="total" id="totalPrice">Total: UGX0shs</p>
+      <p class="total" id="totalPrice">Total: UGX0shs</p>
 
-    <div style="text-align: right;">
-      <button onclick="clearCart()">Clear Cart</button>
-      <button onclick="checkout()">Checkout</button>
+      <div style="text-align: right">
+        <button onclick="clearCart()">Clear Cart</button>
+        <button onclick="checkout()">Checkout</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Toast notification -->
-  <div id="toast" class="toast"></div>
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
 
-  <script src="/js/cart.js">
-  
-  </script>
-</body>
+    <script src="/js/cart.js"></script>
+  </body>
 </html>

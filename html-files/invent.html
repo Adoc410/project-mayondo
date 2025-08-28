@@ -1,158 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MWF Inventory</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('pic/lamp.gif'); /* same background as login */
-      background-size: cover;
-      background-position: center;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>MWF Inventory</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("pic/lamp.gif"); /* same background as login */
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
 
-    .inventory-section {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 850px;
-      animation: fadeIn 1.5s ease;
-    }
+      .inventory-section {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        width: 90%;
+        max-width: 850px;
+        animation: fadeIn 1.5s ease;
+      }
 
-    h1 {
-      text-align: center;
-      color: #9c27b0; /* purple same as login */
-      margin-bottom: 10px;
-    }
+      h1 {
+        text-align: center;
+        color: #9c27b0; /* purple same as login */
+        margin-bottom: 10px;
+      }
 
-    #welcome {
-      text-align: center;
-      margin-bottom: 15px;
-      font-weight: bold;
-      color: #444;
-    }
+      #welcome {
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: #444;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
 
-    th {
-      background: #9c27b0;
-      color: white;
-    }
+      th {
+        background: #9c27b0;
+        color: white;
+      }
 
-    tr:nth-child(even) {
-      background: #f9f9f9;
-    }
+      tr:nth-child(even) {
+        background: #f9f9f9;
+      }
 
-    button {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+      button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-    #addBtn {
-      background: purple;
-      color: white;
-    }
+      #addBtn {
+        background: purple;
+        color: white;
+      }
 
-    .deleteBtn {
-      background: crimson;
-      color: white;
-    }
+      .deleteBtn {
+        background: crimson;
+        color: white;
+      }
 
-    .logout {
-      background: gray;
-      color: white;
-      width: 100%;
-      margin-top: 10px;
-    }
+      .logout {
+        background: gray;
+        color: white;
+        width: 100%;
+        margin-top: 10px;
+      }
 
-    #addItemSection {
-      text-align: center;
-      margin-bottom: 15px;
-    }
+      #addItemSection {
+        text-align: center;
+        margin-bottom: 15px;
+      }
 
-    #addItemSection input {
-      padding: 8px;
-      margin: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
+      #addItemSection input {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-  </style>
-</head>
-<body>
-  <nav style="background:#5A4DAF; padding:10px;">
-  <a href="home.html" style="color:white; margin-right:15px;">Home</a>
-  <a href="index.html" style="color:white; margin-right:15px;">Login</a>
-  <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
-  <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
-  <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
-  <a href="user.html" style="color:white; margin-right:15px;">Users</a>
-  <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
-  <a href="product.html" style="color:white; margin-right:15px;">Products</a>
-  <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
-  <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
-  <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
-  <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
-  <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
-</nav>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="background: #5a4daf; padding: 10px">
+      <a href="home.html" style="color: white; margin-right: 15px">Home</a>
+      <a href="index.html" style="color: white; margin-right: 15px">Login</a>
+      <a href="dash.html" style="color: white; margin-right: 15px">Dashboard</a>
+      <a href="admin.html" style="color: white; margin-right: 15px">Admin</a>
+      <a href="wk.html" style="color: white; margin-right: 15px">Workers</a>
+      <a href="user.html" style="color: white; margin-right: 15px">Users</a>
+      <a href="sales.html" style="color: white; margin-right: 15px">Sales</a>
+      <a href="product.html" style="color: white; margin-right: 15px"
+        >Products</a
+      >
+      <a href="invent.html" style="color: white; margin-right: 15px"
+        >Inventory</a
+      >
+      <a href="todo.html" style="color: white; margin-right: 15px">To-Do</a>
+      <a href="cart.html" style="color: white; margin-right: 15px">Cart</a>
+      <a href="attend.html" style="color: white; margin-right: 15px"
+        >Attendance</a
+      >
+      <a href="surv.html" style="color: white; margin-right: 15px">Survey</a>
+    </nav>
 
-  <section class="inventory-section">
-    <h1> Inventory Management</h1>
-    <p id="welcome"></p>
-    
-    <table id="inventoryTable">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Price ($)</th>
-          <th id="actionCol">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Rows will load here -->
-      </tbody>
-    </table>
+    <section class="inventory-section">
+      <h1>Inventory Management</h1>
+      <p id="welcome"></p>
 
-    <!-- Only visible to Manager & CEO -->
-    <div id="addItemSection">
-      <h3 style="color:#9c27b0;">Add New Item</h3>
-      <input type="text" id="itemName" placeholder="Item name">
-      <input type="number" id="itemQty" placeholder="Quantity">
-      <input type="number" id="itemPrice" placeholder="Price">
-      <button id="addBtn">Add Item</button>
-    </div>
+      <table id="inventoryTable">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price ($)</th>
+            <th id="actionCol">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will load here -->
+        </tbody>
+      </table>
 
-    <button id="logoutBtn" class="logout">Logout</button>
-  </section>
+      <!-- Only visible to Manager & CEO -->
+      <div id="addItemSection">
+        <h3 style="color: #9c27b0">Add New Item</h3>
+        <input type="text" id="itemName" placeholder="Item name" />
+        <input type="number" id="itemQty" placeholder="Quantity" />
+        <input type="number" id="itemPrice" placeholder="Price" />
+        <button id="addBtn">Add Item</button>
+      </div>
 
-  <script src="/js/invent.js">
-    
-  </script>
-</body>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </section>
+
+    <script src="/js/invent.js"></script>
+  </body>
 </html>

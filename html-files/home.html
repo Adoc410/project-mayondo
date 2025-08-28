@@ -1,181 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mayondo Wood and Furniture</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #6a1b9a, #0abe0d);
-      color: white;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mayondo Wood and Furniture</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #6a1b9a, #0abe0d);
+        color: white;
+      }
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 20px 50px;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
+      header {
+        display: flex;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
 
-    header img {
-      height: 60px;
-      margin-right: 15px;
-      border-radius: 50%;
-    }
+      header img {
+        height: 60px;
+        margin-right: 15px;
+        border-radius: 50%;
+      }
 
-    header h1 {
-      font-size: 22px;
-      margin: 0;
-      color: #f1f1f1;
-    }
+      header h1 {
+        font-size: 22px;
+        margin: 0;
+        color: #f1f1f1;
+      }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 80px 50px;
-      gap: 30px;
-    }
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 50px;
+        gap: 30px;
+      }
 
-    .hero-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      max-width: 450px;
-      backdrop-filter: blur(6px);
-    }
+      .hero-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        max-width: 450px;
+        backdrop-filter: blur(6px);
+      }
 
-    .hero-card h2 {
-      font-size: 42px;
-      margin-bottom: 20px;
-      color: #f1c40f;
-    }
+      .hero-card h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        color: #f1c40f;
+      }
 
-    .hero-card p {
-      font-size: 16px;
-      margin-bottom: 25px;
-      color: #ddd;
-      line-height: 1.6;
-    }
+      .hero-card p {
+        font-size: 16px;
+        margin-bottom: 25px;
+        color: #ddd;
+        line-height: 1.6;
+      }
 
-    .hero-card button {
-      padding: 14px 28px;
-      background: #9c27b0;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-    }
+      .hero-card button {
+        padding: 14px 28px;
+        background: #9c27b0;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
 
-    .hero-card button:hover {
-      background: darkmagenta;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    }
+      .hero-card button:hover {
+        background: darkmagenta;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      }
 
-    .hero img {
-      max-width: 420px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    }
+      .hero img {
+        max-width: 420px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      }
 
-    /* -------- Custom Popup -------- */
-    .popup {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
+      /* -------- Custom Popup -------- */
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
 
-    .popup.active {
-      visibility: visible;
-      opacity: 1;
-    }
+      .popup.active {
+        visibility: visible;
+        opacity: 1;
+      }
 
-    .popup-card {
-      background: #fff;
-      color: #333;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      max-width: 400px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      animation: popupShow 0.4s ease;
-    }
+      .popup-card {
+        background: #fff;
+        color: #333;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        animation: popupShow 0.4s ease;
+      }
 
-    .popup-card h3 {
-      margin: 0 0 15px;
-      color: #6a1b9a;
-    }
+      .popup-card h3 {
+        margin: 0 0 15px;
+        color: #6a1b9a;
+      }
 
-    .popup-card p {
-      font-size: 15px;
-      color: #555;
-      margin-bottom: 20px;
-    }
+      .popup-card p {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 20px;
+      }
 
-    .popup-card button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      background: #9c27b0;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+      .popup-card button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        background: #9c27b0;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
-    .popup-card button:hover {
-      background: darkmagenta;
-      transform: scale(1.05);
-    }
+      .popup-card button:hover {
+        background: darkmagenta;
+        transform: scale(1.05);
+      }
 
-    @keyframes popupShow {
-      from {transform: scale(0.7); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <!--<img src="logo.png" alt="Mayondo Logo">-->
-    <h1>Mayondo Wood and Furniture</h1>
-  </header>
+      @keyframes popupShow {
+        from {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!--<img src="logo.png" alt="Mayondo Logo">-->
+      <h1>Mayondo Wood and Furniture</h1>
+    </header>
 
-  <section class="hero">
-    <div class="hero-card">
-      <h2>Elegant Interior Designs</h2>
-      <p>Transform your home with furniture crafted by Mayondo Wood and Furniture. Modern, comfortable, and built with passion.</p>
-    <!-- <button onclick="showPopup()" onclick="window.location.href='login.html'">GET STARTED</button> -->
-<button onclick="window.location.href='index.html'">GET STARTED</button>
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Elegant Interior Designs</h2>
+        <p>
+          Transform your home with furniture crafted by Mayondo Wood and
+          Furniture. Modern, comfortable, and built with passion.
+        </p>
+        <!-- <button onclick="showPopup()" onclick="window.location.href='login.html'">GET STARTED</button> -->
+        <button onclick="window.location.href='index.html'">GET STARTED</button>
+      </div>
+    </section>
 
+    <div id="popup" class="popup">
+      <div class="popup-card">
+        <h3>Welcome!</h3>
+        <p>
+          We’re glad to have you at <b>Mayondo Wood and Furniture</b>. Let’s
+          design your dream interior together!
+        </p>
+        <button onclick="closePopup()">OK</button>
+      </div>
     </div>
-    
-  </section>
 
-   
-  <div id="popup" class="popup">
-    <div class="popup-card">
-      <h3>Welcome!</h3>
-      <p>We’re glad to have you at <b>Mayondo Wood and Furniture</b>. Let’s design your dream interior together!</p>
-      <button onclick="closePopup()">OK</button>
-    </div>
-  </div>
-
-  <script src="/js/home.js">
-    
-  </script>
-</body>
+    <script src="/js/home.js"></script>
+  </body>
 </html>

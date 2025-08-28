@@ -1,227 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #cb10ce;
-      color: #cb12bf;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #cb10ce;
+        color: #cb12bf;
+      }
 
-    .sidebar {
-      width: 240px;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: #cf06e1; /* Purple */
-      color: rgb(34, 227, 95);
-      padding: 20px;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
-    }
+      .sidebar {
+        width: 240px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #cf06e1; /* Purple */
+        color: rgb(34, 227, 95);
+        padding: 20px;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      }
 
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 22px;
-    }
+      .sidebar h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 22px;
+      }
 
-    .sidebar button {
-      display: block;
-      width: 100%;
-      margin: 8px 0;
-      padding: 12px;
-      background: transparent;
-      border: 1px solid white;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-    
-    }
+      .sidebar button {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px;
+        background: transparent;
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+      }
 
-    .sidebar button:hover {
-      background: white;
-      color: #da08da;
-      transform: scale(1.03);
-    }
+      .sidebar button:hover {
+        background: white;
+        color: #da08da;
+        transform: scale(1.03);
+      }
 
-    .main {
-      margin-left: 240px;
-      padding: 25px;
-    }
+      .main {
+        margin-left: 240px;
+        padding: 25px;
+      }
 
-    .topbar {
-      background: #06c650;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 10px rgba(139, 6, 143, 0.2);
-    }
+      .topbar {
+        background: #06c650;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 10px rgba(139, 6, 143, 0.2);
+      }
 
-    .topbar h1 {
-      margin: 0;
-      font-size: 24px;
-    }
+      .topbar h1 {
+        margin: 0;
+        font-size: 24px;
+      }
 
-    .dashboard-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
+      .dashboard-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
 
-    .card {
-      background: rgb(13, 240, 24);
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(94, 4, 94, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+      .card {
+        background: rgb(13, 240, 24);
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(94, 4, 94, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      }
 
-    .card h2 {
-      font-size: 28px;
-      margin: 0;
-      color: #5e2ca5;
-    }
+      .card h2 {
+        font-size: 28px;
+        margin: 0;
+        color: #5e2ca5;
+      }
 
-    .card p {
-      margin-top: 8px;
-      font-size: 16px;
-      color: #555555;
-    }
+      .card p {
+        margin-top: 8px;
+        font-size: 16px;
+        color: #555555;
+      }
 
-    /* Stylish Logout */
-    .logout-btn {
-      margin-top: 30px;
-      width: 100%;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      border: none;
-      border-radius: 50px;
-      padding: 12px;
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-    }
+      /* Stylish Logout */
+      .logout-btn {
+        margin-top: 30px;
+        width: 100%;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        border: none;
+        border-radius: 50px;
+        padding: 12px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
 
-    .logout-btn:hover {
-      background: linear-gradient(135deg, #ff4b2b, #ff416c);
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
-  </style>
-</head>
-<body>
-  <nav style="background:#09d428; padding:10px;">
-  <a href="home.html" style="color:white; margin-right:15px;">Home</a>
-  <a href="index.html" style="color:white; margin-right:15px;">Login</a>
-  <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
-  <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
-  <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
-  <a href="user.html" style="color:white; margin-right:15px;">Users</a>
-  <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
-  <a href="product.html" style="color:white; margin-right:15px;">Products</a>
-  <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
-  <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
-  <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
-  <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
-  <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
-</nav>
+      .logout-btn:hover {
+        background: linear-gradient(135deg, #ff4b2b, #ff416c);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="background: #09d428; padding: 10px">
+      <a href="home.html" style="color: white; margin-right: 15px">Home</a>
+      <a href="index.html" style="color: white; margin-right: 15px">Login</a>
+      <a href="dash.html" style="color: white; margin-right: 15px">Dashboard</a>
+      <a href="admin.html" style="color: white; margin-right: 15px">Admin</a>
+      <a href="wk.html" style="color: white; margin-right: 15px">Workers</a>
+      <a href="user.html" style="color: white; margin-right: 15px">Users</a>
+      <a href="sales.html" style="color: white; margin-right: 15px">Sales</a>
+      <a href="product.html" style="color: white; margin-right: 15px"
+        >Products</a
+      >
+      <a href="invent.html" style="color: white; margin-right: 15px"
+        >Inventory</a
+      >
+      <a href="todo.html" style="color: white; margin-right: 15px">To-Do</a>
+      <a href="cart.html" style="color: white; margin-right: 15px">Cart</a>
+      <a href="attend.html" style="color: white; margin-right: 15px"
+        >Attendance</a
+      >
+      <a href="surv.html" style="color: white; margin-right: 15px">Survey</a>
+    </nav>
 
-  <div class="sidebar">
-    <h2>Admin Panel</h2>
-    <button onclick="showSection('dashboard')">Dashboard</button>
-    <button onclick="showSection('sales')">Sales</button>
-    <button onclick="showSection('inventory')">Inventory</button>
-    <button onclick="showSection('todo')">To-Do List</button>
-    <button onclick="showSection('users')">Users</button>
-    <button onclick="showSection('attendance')">Attendance</button>
-    <button onclick="showSection('products')">Products</button>
-    <button onclick="showSection('reports')">Reports</button>
-    <button onclick="showSection('settings')">Settings</button>
-    <button class="logout-btn" onclick="logout()"> Logout</button>
-  </div>
-
-  <div class="main">
-    <div class="topbar">
-      <h1>Welcome, Admin</h1>
+    <div class="sidebar">
+      <h2>Admin Panel</h2>
+      <button onclick="showSection('dashboard')">Dashboard</button>
+      <button onclick="showSection('sales')">Sales</button>
+      <button onclick="showSection('inventory')">Inventory</button>
+      <button onclick="showSection('todo')">To-Do List</button>
+      <button onclick="showSection('users')">Users</button>
+      <button onclick="showSection('attendance')">Attendance</button>
+      <button onclick="showSection('products')">Products</button>
+      <button onclick="showSection('reports')">Reports</button>
+      <button onclick="showSection('settings')">Settings</button>
+      <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 
-    <!-- Dashboard -->
-    <div id="dashboard" class="section">
-      <div class="dashboard-cards">
-        <div class="card"><h2>150</h2><p>Registered Users</p></div>
-        <div class="card"><h2>8</h2><p>Employees</p></div>
-        <div class="card"><h2>24</h2><p>Reports</p></div>
-        <div class="card"><h2>5</h2><p>Settings</p></div>
+    <div class="main">
+      <div class="topbar">
+        <h1>Welcome, Admin</h1>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dashboard" class="section">
+        <div class="dashboard-cards">
+          <div class="card">
+            <h2>150</h2>
+            <p>Registered Users</p>
+          </div>
+          <div class="card">
+            <h2>8</h2>
+            <p>Employees</p>
+          </div>
+          <div class="card">
+            <h2>24</h2>
+            <p>Reports</p>
+          </div>
+          <div class="card">
+            <h2>5</h2>
+            <p>Settings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales -->
+      <div id="sales" class="section" style="display: none">
+        <h2>Sales</h2>
+        <p>Daily, weekly, and monthly sales reports will show here.</p>
+      </div>
+
+      <!-- Inventory -->
+      <div id="inventory" class="section" style="display: none">
+        <h2>Inventory</h2>
+        <p>Manage stock, furniture items, and materials.</p>
+      </div>
+
+      <!-- To-Do List -->
+      <div id="todo" class="section" style="display: none">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add new task" />
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+      </div>
+
+      <!-- Users -->
+      <div id="users" class="section" style="display: none">
+        <h2>Users</h2>
+        <p>List of system users and roles.</p>
+      </div>
+
+      <!-- Attendance -->
+      <div id="attendance" class="section" style="display: none">
+        <h2>Attendance</h2>
+        <p>Daily staff attendance register goes here.</p>
+      </div>
+
+      <!-- Products -->
+      <div id="products" class="section" style="display: none">
+        <h2>Products</h2>
+        <p>List of available furniture products.</p>
+      </div>
+
+      <!-- Reports -->
+      <div id="reports" class="section" style="display: none">
+        <h2>Reports</h2>
+        <p>System and sales reports.</p>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings" class="section" style="display: none">
+        <h2>Settings</h2>
+        <p>System preferences.</p>
       </div>
     </div>
 
-    <!-- Sales -->
-    <div id="sales" class="section" style="display:none;">
-      <h2>Sales</h2>
-      <p>Daily, weekly, and monthly sales reports will show here.</p>
-    </div>
-
-    <!-- Inventory -->
-    <div id="inventory" class="section" style="display:none;">
-      <h2>Inventory</h2>
-      <p>Manage stock, furniture items, and materials.</p>
-    </div>
-
-    <!-- To-Do List -->
-    <div id="todo" class="section" style="display:none;">
-      <h2>To-Do List</h2>
-      <input type="text" id="taskInput" placeholder="Add new task">
-      <button onclick="addTask()">Add Task</button>
-      <ul id="taskList"></ul>
-    </div>
-
-    <!-- Users -->
-    <div id="users" class="section" style="display:none;">
-      <h2>Users</h2>
-      <p>List of system users and roles.</p>
-    </div>
-
-    <!-- Attendance -->
-    <div id="attendance" class="section" style="display:none;">
-      <h2>Attendance</h2>
-      <p>Daily staff attendance register goes here.</p>
-    </div>
-
-    <!-- Products -->
-    <div id="products" class="section" style="display:none;">
-      <h2>Products</h2>
-      <p>List of available furniture products.</p>
-    </div>
-
-    <!-- Reports -->
-    <div id="reports" class="section" style="display:none;">
-      <h2>Reports</h2>
-      <p>System and sales reports.</p>
-    </div>
-
-    <!-- Settings -->
-    <div id="settings" class="section" style="display:none;">
-      <h2>Settings</h2>
-      <p>System preferences.</p>
-    </div>
-  </div>
-
-  <script src="/js/dash.js">
-   
-  </script>
-</body>
+    <script src="/js/dash.js"></script>
+  </body>
 </html>
