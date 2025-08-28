@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>MWF Sales</title>
+    <title>MWF Inventory</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-image: url("pic/lamp.gif"); /* same background */
+        background-image: url("pic/lamp.gif"); /* same background as login */
         background-size: cover;
         background-position: center;
         margin: 0;
@@ -17,7 +17,7 @@
         min-height: 100vh;
       }
 
-      .sales-section {
+      .inventory-section {
         background: rgba(255, 255, 255, 0.95);
         padding: 25px;
         border-radius: 12px;
@@ -29,7 +29,7 @@
 
       h1 {
         text-align: center;
-        color: #9c27b0;
+        color: #9c27b0; /* purple same as login */
         margin-bottom: 10px;
       }
 
@@ -87,12 +87,12 @@
         margin-top: 10px;
       }
 
-      #addSaleSection {
+      #addItemSection {
         text-align: center;
         margin-bottom: 15px;
       }
 
-      #addSaleSection input {
+      #addItemSection input {
         padding: 8px;
         margin: 5px;
         border-radius: 6px;
@@ -132,16 +132,16 @@
       <a href="surv.html" style="color: white; margin-right: 15px">Survey</a>
     </nav>
 
-    <section class="sales-section">
-      <h1>Sales Management</h1>
+    <section class="inventory-section">
+      <h1>Inventory Management</h1>
       <p id="welcome"></p>
 
-      <table id="salesTable">
+      <table id="inventoryTable">
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Quantity Sold</th>
-            <th>Total ($)</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price ($)</th>
             <th id="actionCol">Actions</th>
           </tr>
         </thead>
@@ -150,18 +150,18 @@
         </tbody>
       </table>
 
-      <!-- Only for Manager & CEO -->
-      <div id="addSaleSection">
-        <h3 style="color: #652570">Record New Sale</h3>
-        <input type="text" id="saleProduct" placeholder="Product name" />
-        <input type="number" id="saleQty" placeholder="Quantity" />
-        <input type="number" id="saleTotal" placeholder="Total Price" />
-        <button id="addBtn">Add Sale</button>
+      <!-- Only visible to Manager & CEO -->
+      <div id="addItemSection">
+        <h3 style="color: #9c27b0">Add New Item</h3>
+        <input type="text" id="itemName" placeholder="Item name" />
+        <input type="number" id="itemQty" placeholder="Quantity" />
+        <input type="number" id="itemPrice" placeholder="Price" />
+        <button id="addBtn">Add Item</button>
       </div>
 
       <button id="logoutBtn" class="logout">Logout</button>
     </section>
 
-    <script src="/js/sales.js"></script>
+    <script src="invent.js"></script>
   </body>
 </html>
