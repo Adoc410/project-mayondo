@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worker Survey</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #13fa2a;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        background: #19ec38;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav h1 {
+        margin: 0;
+    }
+    .container {
+        padding: 20px;
+    }
+    .survey, .results {
+        background: rgb(215, 14, 237);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-top: 20px;
+    }
+    .hidden {
+        display: none;
+    }
+
+    button {
+        background: #bf26e6;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    button:hover {
+        background: #c416e7;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+</style>
+</head>
+<body>
+    <nav style="background:#ac06cd; padding:10px;">
+  <a href="home.html" style="color:white; margin-right:15px;">Home</a>
+  <a href="index.html" style="color:white; margin-right:15px;">Login</a>
+  <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
+  <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
+  <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
+  <a href="user.html" style="color:white; margin-right:15px;">Users</a>
+  <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
+  <a href="product.html" style="color:white; margin-right:15px;">Products</a>
+  <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
+  <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
+  <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
+  <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
+  <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
+</nav>
+
+
+<nav>
+    <h1>Worker Survey</h1>
+    <div>
+        <label for="role">Login as: </label>
+        <select id="role" onchange="setRole()">
+            <option value="">-- Select Role --</option>
+            <option value="worker">Worker</option>
+            <option value="permitted">Permitted Worker</option>
+            <option value="manager">Manager</option>
+            <option value="ceo">CEO</option>
+        </select>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- Survey Questions (for workers) -->
+    <div id="surveySection" class="survey hidden">
+        <h2>Survey Questions</h2>
+        <form id="surveyForm">
+            <h3>Personal Information</h3>
+            <label>Full Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Gender:</label>
+            <select name="gender" required>
+                <option value="">-- Select --</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+
+            <label>Contact:</label>
+            <input type="text" name="contact" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Nationality:</label>
+            <input type="text" name="nationality" required>
+
+            <label>Role in Company:</label>
+            <input type="text" name="companyRole" required>
+
+            <h3>Workplace Survey</h3>
+            <label>1. How satisfied are you with your job?</label>
+            <select name="q1" required>
+                <option value="">-- Select --</option>
+                <option>Very Satisfied</option>
+                <option>Satisfied</option>
+                <option>Neutral</option>
+                <option>Dissatisfied</option>
+                <option>Very Dissatisfied</option>
+            </select><br><br>
+
+            <label>2. Do you feel supported by your manager?</label>
+            <select name="q2" required>
+                <option value="">-- Select --</option>
+                <option>Always</option>
+                <option>Most of the time</option>
+                <option>Sometimes</option>
+                <option>Rarely</option>
+                <option>Never</option>
+            </select><br><br>
+
+            <label>3. What improvements would you like to see at work?</label>
+            <textarea name="q3" rows="3" required></textarea><br><br>
+
+            <button type="submit">Submit Survey</button>
+        </form>
+    </div>
+
+    <!-- Survey Results (visible only to Manager & CEO) -->
+    <div id="resultsSection" class="results hidden">
+        <h2>Survey Results</h2>
+        <div id="resultsList"></div>
+    </div>
+
+</div>
+
+<script>
+let role = "";
+
+function setRole() {
+    role = document.getElementById("role").value;
+
+    // Hide sections first
+    document.getElementById("surveySection").classList.add("hidden");
+    document.getElementById("resultsSection").classList.add("hidden");
+
+    // Show based on role
+    if (role === "worker" || role === "permitted") {
+        document.getElementById("surveySection").classList.remove("hidden");
+    }
+    if (role === "manager" || role === "ceo") {
+        document.getElementById("resultsSection").classList.remove("hidden");
+        loadResults();
+    }
+}
+
+// Handle survey submission
+document.getElementById("surveyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const surveyResponse = {
+        name: formData.get("name"),
+        gender: formData.get("gender"),
+        contact: formData.get("contact"),
+        email: formData.get("email"),
+        nationality: formData.get("nationality"),
+        companyRole: formData.get("companyRole"),
+        q1: formData.get("q1"),
+        q2: formData.get("q2"),
+        q3: formData.get("q3"),
+    };
+
+    // Save response to local storage
+    let responses = JSON.parse(localStorage.getItem("surveyResponses")) || [];
+    responses.push(surveyResponse);
+    localStorage.setItem("surveyResponses", JSON.stringify(responses));
+
+    alert("✅ Survey submitted successfully!");
+    this.reset();
+});
+
+// Load results for Manager/CEO
+function loadResults() {
+    const resultsList = document.getElementById("resultsList");
+    resultsList.innerHTML = "";
+
+    let responses = JSON.parse(localStorage.getItem("surveyResponses")) || [];
+
+    if (responses.length === 0) {
+        resultsList.innerHTML = "<p>No survey responses yet.</p>";
+        return;
+    }
+
+    responses.forEach((res, index) => {
+        resultsList.innerHTML += `
+            <div style="border:1px solid #ddd; border-radius:8px; padding:10px; margin-bottom:10px;">
+                <p><b>Response #${index + 1}</b></p>
+                <p><b>Name:</b> ${res.name}</p>
+                <p><b>Gender:</b> ${res.gender}</p>
+                <p><b>Contact:</b> ${res.contact}</p>
+                <p><b>Email:</b> ${res.email}</p>
+                <p><b>Nationality:</b> ${res.nationality}</p>
+                <p><b>Role in Company:</b> ${res.companyRole}</p>
+                <hr>
+                <p><b>Job Satisfaction:</b> ${res.q1}</p>
+                <p><b>Manager Support:</b> ${res.q2}</p>
+                <p><b>Improvement Suggestion:</b> ${res.q3}</p>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MWF Products</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('pic/lamp.gif');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .products-container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #9c27b0;
+      font-size: 2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card-body h3 {
+      color: purple;
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    .price {
+      color: darkmagenta;
+      font-weight: bold;
+      margin: 5px 0 15px;
+      font-size: 1.1rem;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: purple;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: darkmagenta;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      background: gray;
+      color: white;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #555;
+    }
+
+    .cart-counter {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      background: purple;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    /* Toast notification styles */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: -350px;
+      background: #9c27b0;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: right 0.5s ease, opacity 0.5s ease;
+      opacity: 0.95;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+    <nav style="background:#5A4DAF; padding:10px;">
+  <a href="home.html" style="color:white; margin-right:15px;">Home</a>
+  <a href="index.html" style="color:white; margin-right:15px;">Login</a>
+  <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
+  <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
+  <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
+  <a href="user.html" style="color:white; margin-right:15px;">Users</a>
+  <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
+  <a href="product.html" style="color:white; margin-right:15px;">Products</a>
+  <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
+  <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
+  <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
+  <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
+  <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
+</nav>
+
+  <div class="products-container">
+    <a href="login.html" class="back-btn">← Back to Login</a>
+    <div class="cart-counter" id="cartCounter">Cart (0)</div>
+    <h1>Our Products</h1>
+
+    <div class="product-grid">
+      <div class="card">
+        <img src="pic/sofa.jpg" alt="Sofa">
+        <div class="card-body">
+          <h3>Luxury Sofa</h3>
+          <p class="price">$450</p>
+          <button onclick="addToCart('Luxury Sofa', 450)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="pic/bed.jpg" alt="Bed">
+        <div class="card-body">
+          <h3>King Size Bed</h3>
+          <p class="price">$750</p>
+          <button onclick="addToCart('King Size Bed', 750)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="pic/table.jpg" alt="Table">
+        <div class="card-body">
+          <h3>Dining Table</h3>
+          <p class="price">$320</p>
+          <button onclick="addToCart('Dining Table', 320)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="image/sofa.jpg" alt="Chair">
+        <div class="card-body">
+          <h3>Classic Chair</h3>
+          <p class="price">$120</p>
+          <button onclick="addToCart('Classic Chair', 120)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // Load cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartCounter() {
+      document.getElementById("cartCounter").textContent = `Cart (${cart.length})`;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    function addToCart(productName, price) {
+      const product = { name: productName, price: price };
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCounter();
+      showToast(`${productName} added to cart ✅`);
+    }
+
+    // Initialize counter on page load
+    updateCartCounter();
+
+    // Click on cart counter → go to cart page
+    document.getElementById("cartCounter").addEventListener("click", () => {
+      showToast("Redirecting to Cart...");
+      setTimeout(() => {
+        window.location.href = "cart.html";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Staff Attendance - Mayondo Wood and Furniture</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ca0cdf, #653d6b);
+      color: white;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f6f0f5;
+    }
+
+    .attendance-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="date"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background: rgba(0,0,0,0.3);
+      color: #eeebe2;
+    }
+
+    select, button.record-btn {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button.record-btn {
+      background: #1bf969;
+      color: black;
+      cursor: pointer;
+    }
+    button.record-btn:hover {
+      background: #0fa63c;
+      color: white;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <nav style="background:#0cd73f; padding:10px;">
+    <a href="home.html" style="color:white; margin-right:15px;">Home</a>
+    <a href="index.html" style="color:white; margin-right:15px;">Login</a>
+    <a href="dash.html" style="color:white; margin-right:15px;">Dashboard</a>
+    <a href="admin.html" style="color:white; margin-right:15px;">Admin</a>
+    <a href="wk.html" style="color:white; margin-right:15px;">Workers</a>
+    <a href="user.html" style="color:white; margin-right:15px;">Users</a>
+    <a href="sales.html" style="color:white; margin-right:15px;">Sales</a>
+    <a href="product.html" style="color:white; margin-right:15px;">Products</a>
+    <a href="invent.html" style="color:white; margin-right:15px;">Inventory</a>
+    <a href="todo.html" style="color:white; margin-right:15px;">To-Do</a>
+    <a href="cart.html" style="color:white; margin-right:15px;">Cart</a>
+    <a href="attend.html" style="color:white; margin-right:15px;">Attendance</a>
+    <a href="surv.html" style="color:white; margin-right:15px;">Survey</a>
+  </nav>
+
+  <h1>Daily Staff Attendance Register</h1>
+
+  <div class="attendance-container">
+    <label for="attendance-date">Select Date:</label>
+    <input type="date" id="attendance-date">
+
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Attendance</th>
+          <th>Check In</th>
+          <th>Time In</th>
+          <th>Check Out</th>
+          <th>Time Out</th>
+        </tr>
+      </thead>
+      <tbody id="attendance-body">
+        <tr>
+          <td>1</td><td>Achiro Milifer</td>
+          <td><select><option>Present</option><option>Absent</option></select></td>
+          <td><button class="record-btn checkin">Check In</button></td>
+          <td class="timein"></td>
+          <td><button class="record-btn checkout">Check Out</button></td>
+          <td class="timeout"></td>
+        </tr>
+        <tr>
+          <td>2</td><td>Odong Denis</td>
+          <td><select><option>Present</option><option>Absent</option></select></td>
+          <td><button class="record-btn checkin">Check In</button></td>
+          <td class="timein"></td>
+          <td><button class="record-btn checkout">Check Out</button></td>
+          <td class="timeout"></td>
+        </tr>
+        <tr>
+          <td>3</td><td>Odong Henry</td>
+          <td><select><option>Present</option><option>Absent</option></select></td>
+          <td><button class="record-btn checkin">Check In</button></td>
+          <td class="timein"></td>
+          <td><button class="record-btn checkout">Check Out</button></td>
+          <td class="timeout"></td>
+        </tr>
+        <tr>
+          <td>4</td><td>Lamwoka Sandra</td>
+          <td><select><option>Present</option><option>Absent</option></select></td>
+          <td><button class="record-btn checkin">Check In</button></td>
+          <td class="timein"></td>
+          <td><button class="record-btn checkout">Check Out</button></td>
+          <td class="timeout"></td>
+          
+        </tr>
+        <!-- Add others the same way... -->
+      </tbody>
+    </table>
+
+    <div style="text-align:center;">
+      <button onclick="saveAttendance()">Save Attendance</button>
+    </div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Default today’s date
+    document.getElementById("attendance-date").value = new Date().toISOString().split('T')[0];
+
+    // Capture time when clicking check in/out
+    document.querySelectorAll(".checkin").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const row = this.closest("tr");
+        const now = new Date().toLocaleTimeString();
+        row.querySelector(".timein").innerText = now;
+      });
+    });
+
+    document.querySelectorAll(".checkout").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const row = this.closest("tr");
+        const now = new Date().toLocaleTimeString();
+        row.querySelector(".timeout").innerText = now;
+      });
+    });
+
+    function saveAttendance() {
+      const date = document.getElementById("attendance-date").value;
+      const rows = document.querySelectorAll("#attendance-body tr");
+      let records = [];
+
+      rows.forEach(row => {
+        const name = row.cells[1].innerText;
+        const status = row.querySelector("select").value;
+        const timein = row.querySelector(".timein").innerText;
+        const timeout = row.querySelector(".timeout").innerText;
+        records.push({ name, status, timein, timeout });
+      });
+
+      // Save to localStorage by date
+      localStorage.setItem("attendance_" + date, JSON.stringify(records));
+
+      console.log("Attendance on " + date, records);
+
+      document.getElementById("message").innerText = "Attendance saved for " + date + " ✅";
+    }
+
+    function loadAttendance() {
+      const date = document.getElementById("attendance-date").value;
+      const saved = localStorage.getItem("attendance_" + date);
+
+      if (saved) {
+        const records = JSON.parse(saved);
+        const rows = document.querySelectorAll("#attendance-body tr");
+
+        rows.forEach((row, index) => {
+          row.querySelector("select").value = records[index].status;
+          row.querySelector(".timein").innerText = records[index].timein || "";
+          row.querySelector(".timeout").innerText = records[index].timeout || "";
+        });
+
+        document.getElementById("message").innerText = "Loaded saved attendance for " + date + " 📌";
+      }
+    }
+
+    // Reload attendance when date changes
+    document.getElementById("attendance-date").addEventListener("change", loadAttendance);
+
+    // Load for today's date by default
+    window.onload = loadAttendance;
+  </script>
+</body>
+</html>

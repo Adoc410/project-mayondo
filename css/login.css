@@ -1,0 +1,130 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('pic/lamp.gif');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-section {
+  width: 350px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  text-align: center;
+  position: relative;
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #9c27b0;
+  font-size: 1.8rem;
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: purple;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: darkmagenta;
+}
+
+.guest-btn {
+  background: gray;
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.alert {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f8d7da;
+  color: #842029;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #f5c2c7;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.5s ease, top 0.5s ease;
+  z-index: 10;
+}
+
+.alert.show {
+  opacity: 1;
+  top: -90px;
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.5s ease;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;  
+}
+
+a {
+  color: purple;
+  text-decoration: underline;
+  cursor: pointer;
+}
